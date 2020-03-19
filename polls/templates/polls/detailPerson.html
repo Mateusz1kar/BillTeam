@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ person.fitstName }} {{ person.LastName }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'polls:personFormExecute' %}" method="post">
+{% csrf_token %}
+    <input type="text" id="id" name="id" style="display: none" value="{{ person.idPerson }}"><br>
+    <label for="fname">Imie:</label><br>
+    <input type="text" id="fname" name="fname" value="{{ person.firstName }}"><br>
+    <label for="lname">Nazwisko</label><br>
+    <input type="text" id="lname" name="lname" value="{{  person.lastName }}"><br>
+    <label for="login">Login</label><br>
+    <input type="text" id="login" name="login" value="{{ person.login}}"><br>
+    <label for="password">Password</label><br>
+    <input type="password" id="password" name="password" value="{{ person.password }}"><br>
+    <label for="position">Stanowisko</label><br>
+    <input type="text" id="position" name="position" value="{{ person.position }}"><br>
+    <label for="czyA">Admin</label>
+    <input type="checkbox" id="czyA" name="czyA" {% if person.admin %} checked {% endif %}><br><br>
+    <input type="submit" value="Update">
+</form>
+
+
+<form action="{% url 'polls:personDelee' %}" method="post">
+{% csrf_token %}
+     <input type="text" id="id" name="id" style="display: none" value="{{ person.idPerson }}">
+    <input type="submit" value="Delete">
+</form>
+</body>
+</html>

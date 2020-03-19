@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+  <tr>
+      <th>Id</th>
+      <th>Imie</th>
+      <th>Nazwisko</th>
+      <th>Login</th>
+      <th>Stanowisko</th>
+      <th>Admin</th>
+      <th>Wyświetl</th>
+  </tr>
+
+{% if person %}
+    <tr>
+    {% for p in person %}
+         <td>{{ p.idPerson }}</td>
+         <td>{{ p.firstName }}</td>
+         <td>{{ p.lastName }}</td>
+         <td>{{ p.login }}</td>
+         <td>{{ p.position }}</td>
+         <td>{{ p.admin }}</td>
+        <td><a href="{% url 'polls:detailPerson'  p.idPerson %}"><button value="Wyswietl">Wyswietl</button> </a></td></tr>
+    {% endfor %}
+
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</table>
+<a href="{% url 'polls:addPerson' %}" ><button>Add</button></a>
+
+</body>
+</html>
