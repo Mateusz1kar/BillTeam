@@ -9,7 +9,7 @@
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'polls:personAdd' %}" method="post">
+<form action="{% url 'polls:addPerson' %}" method="post">
 {% csrf_token %}
     <input type="text" id="id" name="id" style="display: none" ><br>
     <label for="fname">Imie:</label><br>
@@ -20,6 +20,8 @@
     <input type="text" id="login" name="login" ><br>
     <label for="password">Password</label><br>
     <input type="password" id="password" name="password" ><br>
+    <label for="email">Password</label><br>
+    <input type="email" id="email" name="email" ><br>
     <label for="position">Stanowisko</label><br>
     <input type="text" id="position" name="position" v><br>
     <label for="czyA">Admin</label>

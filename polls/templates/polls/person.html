@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "polls/base.html" %}
+{#  load staticfiles %}#}
+{% block body_block %}
 <table>
   <tr>
       <th>Id</th>
@@ -15,24 +11,23 @@
       <th>Admin</th>
       <th>Wyświetl</th>
   </tr>
-
-{% if person %}
+{#  admin, id, position, user, user_id #}
+{% if person.count > 0  %}
     <tr>
     {% for p in person %}
-         <td>{{ p.idPerson }}</td>
-         <td>{{ p.firstName }}</td>
-         <td>{{ p.lastName }}</td>
-         <td>{{ p.login }}</td>
+         <td>{{ p.id }}</td>
+         <td>{{ p.user.first_name }}</td>
+         <td>{{ p.user.last_name }}</td>
+         <td>{{ p.user.username }}</td>
          <td>{{ p.position }}</td>
          <td>{{ p.admin }}</td>
-        <td><a href="{% url 'polls:detailPerson'  p.idPerson %}"><button value="Wyswietl">Wyswietl</button> </a></td></tr>
+        <td><a href="{% url 'polls:detailPerson'  p.id %}"><button value="Wyswietl">Wyswietl</button> </a></td></tr>
     {% endfor %}
 
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
 </table>
-<a href="{% url 'polls:addPerson' %}" ><button>Add</button></a>
+<a href="{% url 'polls:register' %}" ><button>Add</button></a>
 
-</body>
-</html>
+{% endblock %}
